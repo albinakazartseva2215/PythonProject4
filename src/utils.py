@@ -17,7 +17,7 @@ def read_json(path: str) -> list[dict]:
     return []
 
 
-def create_objects_from_json(data):
+def create_objects_from_json(data: list[dict]) -> list:
     """Функция создает объекты классов"""
     categories = []
     for category in data:
