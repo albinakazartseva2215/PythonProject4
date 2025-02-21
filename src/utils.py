@@ -8,9 +8,13 @@ from src.product import Product
 def read_json(path: str) -> list[dict]:
     """Функция читает json-файл"""
     full_path = os.path.abspath(path)
-    with open(full_path, "r", encoding="utf-8") as file:
-        data = json.load(file)
-    return data
+    if path:
+        with open(full_path, "r", encoding="utf-8") as file:
+            data = json.load(file)
+            if data:
+                return data
+        return []
+    return []
 
 
 def create_objects_from_json(data):
