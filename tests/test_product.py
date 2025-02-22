@@ -18,10 +18,10 @@ def test_new_product(dict_new_product):
     assert result.price == 180000.0
 
 
-def test_price_zero(capsys, product_1):
-    product_1.price
+def test_price_zero(capsys, product_5):
+    product_5.price = 0
     massage = capsys.readouterr()
-    assert massage.out.strip() != "Цена не должна быть нулевая или отрицательная"
+    assert massage.out.strip() == "Цена не должна быть нулевая или отрицательная"
 
 
 def test_price(product_1):

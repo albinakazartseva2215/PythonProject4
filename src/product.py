@@ -39,7 +39,9 @@ class Product:
     @property
     def price(self):
         """Геттер возвращает возможность просмотра цены товара"""
-        return self.__price
+        if self.__price > 0:
+            return self.__price
+        return ""
 
     @price.setter
     def price(self, new_price):
@@ -47,4 +49,3 @@ class Product:
         self.__price = new_price
         if new_price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
-            return
