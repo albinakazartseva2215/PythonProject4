@@ -13,13 +13,16 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
-    def __repr__(self):
+    def __str__(self) -> str:
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
+    def __repr__(self) -> str:
         return (
             f"Product(name={self.name}, description={self.description}, price={self.price}, quantity={self.quantity})"
         )
 
     @classmethod
-    def new_product(cls, dict_product: dict, products=None):
+    def new_product(cls, dict_product: dict, products=None) -> object:
         """Класс-метод, который принимает на вход параметры товара в словаре
         и возвращает созданный объект класса Product"""
         name_pr = dict_product["name"]
@@ -36,16 +39,22 @@ class Product:
 
         return cls(name_pr, description_pr, price_pr, quantity_pr)
 
+    def total_cost(self) -> float:
+        return self.price * self.quantity
+
     @property
-    def price(self):
+    def price(self) -> float:
         """Геттер возвращает возможность просмотра цены товара"""
         return self.__price
 
-
     @price.setter
-    def price(self, new_price):
+    def price(self, new_price: float) -> str:
         """Сеттер возвращает сообщение, если цена нулевая или отрицательная"""
         self.__price = new_price
         if self.__price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
             self.__price = ""
+
+    def __add__(self, other) -> float:
+        """Магический метод позволяет суммировать произведение количества товара на стоимость"""
+        return self.__price * self.quantity + other.__price * other.quantity

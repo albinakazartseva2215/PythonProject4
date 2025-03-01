@@ -26,3 +26,7 @@ def test_category_add_product(category_1, product_3):
 
 def test_products(category_2):
     assert category_2.products == '55" QLED 4K, 123000.0 руб. Остаток: 7 шт.'
+
+
+def test_category_str(category_1):
+    assert str(category_1) == "Смартфоны, количество продуктов: 27 шт."
