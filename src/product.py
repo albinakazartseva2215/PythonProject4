@@ -57,4 +57,5 @@ class Product:
 
     def __add__(self, other) -> float:
         """Магический метод позволяет суммировать произведение количества товара на стоимость"""
-        return self.__price * self.quantity + other.__price * other.quantity
+        if type(other) is Product:
+            return self.__price * self.quantity + other.__price * other.quantity

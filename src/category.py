@@ -1,4 +1,6 @@
+from src.lawngrass_product import LawnGrass
 from src.product import Product
+from src.smartphone_product import Smartphone
 
 
 class Category:
@@ -47,7 +49,11 @@ class Category:
         """Возвращает приватный атрибут __products."""
         return self.__products
 
-    def add_product(self, product: Product) -> int:
+    def add_product(self, product: Product) -> None:
         """Метод для добавления и подсчета товара"""
+        if not isinstance(product, Product):
+            raise TypeError("Можно добавлять только объекты класса Product")
+
         self.__products.append(product)
         Category.product_count += 1
+
