@@ -22,7 +22,19 @@ class Smartphone(Product):
         self.memory = memory
         self.color = color
 
+
     def __add__(self, other):
         if type(other) is Smartphone:
             return self.price * self.quantity + other.price * other.quantity
         raise TypeError
+
+smartphone = Smartphone(
+    name="iPhone 15",
+    description="Смартфон с мощным процессором",
+    price=999.0,
+    quantity=10,
+    efficiency=95.5,
+    model="15 Pro",
+    memory=256,
+    color="Black",
+)

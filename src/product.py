@@ -1,4 +1,8 @@
-class Product:
+from src.base_product import BaseProduct
+from src.print_mixin import PrintMixin
+
+
+class Product(BaseProduct, PrintMixin):
     """Класс для представления товара с наименованием, описанием, ценой, количеством"""
 
     name: str
@@ -12,14 +16,11 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     def __str__(self) -> str:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
-    def __repr__(self) -> str:
-        return (
-            f"Product(name={self.name}, description={self.description}, price={self.price}, quantity={self.quantity})"
-        )
 
     @classmethod
     def new_product(cls, dict_product: dict, products=None) -> object:
