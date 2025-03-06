@@ -13,6 +13,13 @@
 ```
 python utils.py
 python main.py
+python base_product.py
+python base_category_order.py
+python category.py
+python lawngrass_product.py
+python smartphone_product.py
+python print_mixin.py
+python product.py
 
 ```
 
@@ -32,6 +39,11 @@ python main.py
 python test_product.py
 python test_category.py
 python test_utils.py
+python test_lawngrass_product.py
+python test_print_mixin.py
+python test_product.py
+python test_smartphone_product.py
+
 
 ```
 

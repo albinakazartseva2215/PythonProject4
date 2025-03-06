@@ -1,7 +1,8 @@
+from src.print_mixin import PrintMixin
 from src.product import Product
 
 
-class LawnGrass(Product):
+class LawnGrass(Product, PrintMixin):
     """Kласс-наследник 'Трава газонная' от исходного класса Product"""
 
     def __init__(
@@ -19,6 +20,7 @@ class LawnGrass(Product):
         self.country = country
         self.germination_period = germination_period
         self.color = color
+
 
     def __add__(self, other):
         if type(other) is LawnGrass:

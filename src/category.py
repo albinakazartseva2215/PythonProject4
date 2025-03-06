@@ -1,9 +1,11 @@
+from src.base_category_order import BaseCategoryOrder
 from src.lawngrass_product import LawnGrass
+from src.print_mixin import PrintMixin
 from src.product import Product
 from src.smartphone_product import Smartphone
 
 
-class Category:
+class Category(BaseCategoryOrder, PrintMixin):
     """Класс для представления категорий товаров с наименованием категорий,
     их описанием, списком продуктов"""
 
@@ -23,14 +25,12 @@ class Category:
         self.product_count += len(self.__products) if products else 0
         for product in self.__products:
             self.quantity += product.quantity
+        super().__init__()
 
     def __str__(self) -> str:
         """Магический метод для строкового представления информации об объекте класса"""
         return f"{self.name}, количество продуктов: {self.quantity} шт."
 
-    def __repr__(self) -> str:
-        """Метод для создания 'официального' строкового представления объекта"""
-        return f"Category(name={self.name}, description={self.description}, products={self.products})"
 
     @property
     def products(self) -> str:
@@ -56,4 +56,3 @@ class Category:
 
         self.__products.append(product)
         Category.product_count += 1
-
