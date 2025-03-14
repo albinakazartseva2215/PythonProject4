@@ -1,4 +1,7 @@
+from itertools import product
+
 from src.base_category_order import BaseCategoryOrder
+from src.exceptions import ZeroProductPrice
 from src.lawngrass_product import LawnGrass
 from src.print_mixin import PrintMixin
 from src.product import Product
@@ -40,19 +43,39 @@ class Category(BaseCategoryOrder, PrintMixin):
             products_list.append(str(product))
         return "\n".join(products_list)
 
+
     @property
     def products_in_list(self) -> list:
         """Геттер возвращает возможность просмотра приватного списка товаров типа list для итерации"""
         return self.__products
 
+
     def get_products(self) -> list:
         """Возвращает приватный атрибут __products."""
         return self.__products
 
+
     def add_product(self, product: Product) -> None:
         """Метод для добавления и подсчета товара"""
-        if not isinstance(product, Product):
+        if isinstance(product, Product):
+            try:
+                if product.quantity == 0:
+                    raise ZeroProductPrice("Нельзя добавлять товар с нулевым количеством")
+            except ZeroProductPrice as e:
+                print(str(e))
+            else:
+                self.__products.append(product)
+                Category.product_count += 1
+                print("Товар добавлен успешно.")
+            finally:
+                print("Обработка добавления товара завершена.")
+        else:
             raise TypeError("Можно добавлять только объекты класса Product")
 
-        self.__products.append(product)
-        Category.product_count += 1
+
+    def middle_price(self):
+        """Метод, который подсчитывает средний ценник всех товаров"""
+        try:
+            return round(sum([product.price for product in self.__products]) / len(self.__products), 1)
+        except ZeroDivisionError:
+            return 0
